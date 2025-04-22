@@ -6,8 +6,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
-import com.example.imagedetection.analyzer.ImageAnalyzer
-import com.example.imagedetection.data.ImageItem
+import com.example.imagedetection.analyzer.DetectionAnalyzer
 import com.example.imagedetection.data.ProcessedImage
 import com.example.imagedetection.repository.ImageRepository
 import kotlinx.coroutines.Dispatchers
@@ -17,7 +16,7 @@ import kotlinx.coroutines.withContext
 class ViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository = ImageRepository()
-    private val analyzer = ImageAnalyzer(application.applicationContext)
+    private val analyzer = DetectionAnalyzer(application.applicationContext)
     private val currentQuery = MutableStateFlow("technology")
 
     val imageFlow: Flow<PagingData<ProcessedImage>> = currentQuery

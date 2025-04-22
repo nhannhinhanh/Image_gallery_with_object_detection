@@ -2,42 +2,50 @@ package com.example.imagedetection.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.imagedetection.api.PixabayApiService
+import com.example.imagedetection.api.PixabayApi
 import com.example.imagedetection.data.ImageItem
 import retrofit2.HttpException
 import java.io.IOException
 
-class PagingSource(
+class NewPagingSource(
     private val query: String,
-    private val apiService: PixabayApiService
+    private val apiService: PixabayApi
 ) : PagingSource<Int, ImageItem>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ImageItem> {
-        val page = params.key ?: 1
+        val currentPage = params.key ?: 1
+        val perPage = params.loadSize.coerceIn(3, 200) // Đảm bảo perPage nằm trong khoảng 3-200
+
         return try {
             val response = apiService.searchImages(
                 query = query,
-                page = page,
-                perPage = params.loadSize
+                page = currentPage,
+                perPage = perPage
             )
             val images = response.hits
+
+            val prevKey = if (currentPage > 1) currentPage - 1 else null
+            val nextKey = if (images.isNotEmpty()) currentPage + 1 else null
+
             LoadResult.Page(
                 data = images,
-                prevKey = if (page == 1) null else page - 1,
-                nextKey = if (images.isNotEmpty()) page + 1 else null
+                prevKey = prevKey,
+                nextKey = nextKey
             )
         } catch (e: IOException) {
             LoadResult.Error(e)
         } catch (e: HttpException) {
             LoadResult.Error(e)
         } catch (e: Exception) {
-            LoadResult.Error(e)
+            LoadResult.Error(Exception("Unknown error occurred", e))
         }
     }
 
     override fun getRefreshKey(state: PagingState<Int, ImageItem>): Int? {
-        val anchor = state.anchorPosition ?: return null
-        val page = state.closestPageToPosition(anchor)
-        return page?.prevKey?.plus(1) ?: page?.nextKey?.minus(1)
+        return state.anchorPosition?.let { position ->
+            state.closestPageToPosition(position)?.let { page ->
+                page.prevKey?.plus(1) ?: page.nextKey?.minus(1)
+            }
+        }
     }
 }

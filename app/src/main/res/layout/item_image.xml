@@ -4,24 +4,25 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="12dp"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="6dp"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="8dp"
     android:foreground="?android:attr/selectableItemBackground"
     android:clickable="true"
-    android:focusable="true">
+    android:focusable="true"
+    app:cardBackgroundColor="@android:color/transparent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        android:padding="12dp">
+        android:background="@drawable/bg_ocean_gradient"
+        android:padding="16dp">
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="0dp"
             android:layout_height="180dp"
             android:scaleType="centerCrop"
-            android:contentDescription="Image thumbnail"
+            android:contentDescription="@string/image_description"
             android:src="@drawable/default_img"
             android:background="@drawable/rounded_image_background"
             app:layout_constraintTop_toTopOf="parent"
@@ -33,10 +34,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Beautiful scenery from Iceland"
-            android:textColor="#2C3E50"
+            android:textColor="#E0F7FA"
             android:textSize="16sp"
             android:fontFamily="sans-serif-medium"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             app:layout_constraintTop_toBottomOf="@id/imageView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -44,4 +45,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
+
+
 

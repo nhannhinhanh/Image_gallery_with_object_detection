@@ -16,7 +16,7 @@ android {
     compileSdk = 35
 
     buildFeatures {
-        viewBinding = true // Đảm bảo dòng này tồn tại và là true
+        viewBinding = true
         buildConfig = true
     }
 
@@ -66,24 +66,24 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.recyclerview)
 
-    // Paging
+
     implementation(libs.androidx.paging)
 
-    // Retrofit
+
     implementation(libs.retrofit)
     implementation(libs.retrofit.gson)
 
-    // ML Kit (Image Labeling)
+
     implementation(libs.mlkit.image.labeling)
 
-    // Coil for image loading
+
     implementation(libs.coil)
 
-    // Lifecycle components
+
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.lifecycle.viewmodel.ktx)
 
-    // Test
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

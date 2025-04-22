@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Lớp sóng 1 -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#00B5B8" />
+            <corners android:radius="50px" />
+        </shape>
+    </item>
+    <!-- Lớp sóng 2 -->
+    <item android:left="10dp" android:right="10dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#008C8C" />
+            <corners android:radius="50px" />
+        </shape>
+    </item>
+    <!-- Lớp sóng 3 -->
+    <item android:left="20dp" android:right="20dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#006666" />
+            <corners android:radius="50px" />
+        </shape>
+    </item>
+</layer-list>
+

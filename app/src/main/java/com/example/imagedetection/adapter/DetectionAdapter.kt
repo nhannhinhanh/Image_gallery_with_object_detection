@@ -10,7 +10,7 @@ import com.example.imagedetection.R
 import com.example.imagedetection.data.ProcessedImage
 import com.example.imagedetection.databinding.ItemImageBinding
 
-class ImageAdapter : PagingDataAdapter<ProcessedImage, ImageAdapter.ImageViewHolder>(IMAGE_COMPARATOR) {
+class DetectionAdapter : PagingDataAdapter<ProcessedImage, DetectionAdapter.ImageViewHolder>(IMAGE_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
         val binding = ItemImageBinding.inflate(LayoutInflater.from(parent.context), parent, false)
